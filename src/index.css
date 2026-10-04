@@ -308,3 +308,18 @@
     to { translate: 0 0; opacity: 1; }
   }
 }
+
+@layer utilities {
+  .safe-bottom { padding-bottom: calc(1.25rem + env(safe-area-inset-bottom)); }
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .app-frame { width: 100%; max-width: 430px; margin-inline: auto; }
+  @media (min-width: 768px) {
+    .app-frame { max-width: 720px; }
+  }
+  @media (min-width: 1024px) {
+    .app-frame { max-width: 960px; }
+  }
+}
+html, body, #root { min-height: 100%; }
+img, video { max-width: 100%; height: auto; }
+button, a, input, select { touch-action: manipulation; }

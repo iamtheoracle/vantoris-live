@@ -32,6 +32,7 @@ const SECTIONS = [
       { id: 'discover', label: 'Discover hub', desc: 'Invest, HeroBox, news, NGO, FX', icon: Compass, route: '/discover', color: 'bg-navy/8 text-navy' },
       { id: 'investment', label: 'Investment', desc: 'Portfolios & capital', icon: TrendingUp, route: '/investment', color: 'bg-brass/10 text-brass' },
       { id: 'herobox', label: 'HeroBox', desc: 'Care packages & missions', icon: Package, route: '/herobox', color: 'bg-emerald-500/10 text-emerald-700' },
+      { id: 'tx', label: 'Transactions', desc: 'Records returned for this account', icon: FileText, route: '/transactions', color: 'bg-navy/8 text-navy' },
       { id: 'qr', label: 'Member QR', desc: 'Pay & locate members', icon: QrCode, route: '/qr', color: 'bg-blue-500/10 text-blue-600' },
     ],
   },

@@ -128,7 +128,7 @@ export default function FloatingCommandDock() {
   }, [pos]);
 
   const actions = [
-    { id: 'assistant', label: 'Assistant', icon: Sparkles, color: 'bg-navy/8 text-navy', onClick: () => navigate('/assistant') },
+    { id: 'assistant', label: 'Assistant', icon: Sparkles, color: 'bg-navy/8 text-navy', onClick: () => navigate('/ask') },
     { id: 'freeze', label: 'Freeze My Card', icon: Lock, color: 'bg-crimson/10 text-crimson', onClick: () => { setFreezeOpen(true); setExpanded(false); } },
   ];
 

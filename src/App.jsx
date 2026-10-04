@@ -41,6 +41,7 @@ const DiscoverFX = React.lazy(() => import('./pages/DiscoverFX'));
 const DiscoverNGO = React.lazy(() => import('./pages/DiscoverNGO'));
 const DiscoverMarketing = React.lazy(() => import('./pages/DiscoverMarketing'));
 const MemberQR = React.lazy(() => import('./pages/MemberQR'));
+const Transactions = React.lazy(() => import('./pages/Transactions'));
 const Money = React.lazy(() => import('./pages/product/Money'));
 const CardsPage = React.lazy(() => import('./pages/product/Cards'));
 const TravelPage = React.lazy(() => import('./pages/product/Travel'));
@@ -172,6 +173,7 @@ const AuthenticatedApp = () => {
               <Route path="/discover/marketing" element={<DiscoverMarketing />} />
               <Route path="/discover/flights" element={<DiscoverFlights />} />
               <Route path="/discover/housing" element={<DiscoverHousing />} />
+              <Route path="/transactions" element={<Transactions />} />
               <Route path="/qr" element={<MemberQR />} />
               <Route path="/money" element={<Money />} />
               <Route path="/cards" element={<CardsPage />} />
