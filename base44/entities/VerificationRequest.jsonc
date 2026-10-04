@@ -1,0 +1,59 @@
+{
+  "name": "VerificationRequest",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The member who submitted the funding request"
+    },
+    "account_id": {
+      "type": "string",
+      "description": "The account to fund"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "Direct Deposit",
+        "ACH Transfer",
+        "Wire Transfer",
+        "Mobile Check Deposit",
+        "Cashier's Check",
+        "Personal Check"
+      ]
+    },
+    "reference": {
+      "type": "string",
+      "description": "Member-provided reference (confirmation number, check number, etc.)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "admin_notes": {
+      "type": "string"
+    },
+    "deposit_account_details": {
+      "type": "string",
+      "description": "Account details provided for deposit"
+    },
+    "deposit_details_expires": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this deposit account details are no longer valid"
+    }
+  },
+  "required": [
+    "user_id",
+    "account_id",
+    "amount",
+    "method"
+  ]
+}
