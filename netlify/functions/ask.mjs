@@ -30,7 +30,7 @@ export default async (request) => {
       ...(process.env.PRIVATE_LLM_KEY ? { authorization: `Bearer ${process.env.PRIVATE_LLM_KEY}` } : {}),
     },
     body: JSON.stringify({
-      model: process.env.PRIVATE_LLM_MODEL || 'llama3.1',
+      model: process.env.PRIVATE_LLM_MODEL || 'qwen2.5:7b',
       messages: [{ role: 'user', content: prompt }],
       stream: false,
     }),

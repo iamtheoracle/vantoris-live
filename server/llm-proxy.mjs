@@ -6,7 +6,7 @@ import http from 'node:http';
 
 const port = Number(process.env.PORT || 8787);
 const upstream = process.env.PRIVATE_LLM_URL || 'http://127.0.0.1:11434/v1/chat/completions';
-const model = process.env.PRIVATE_LLM_MODEL || 'llama3.1';
+const model = process.env.PRIVATE_LLM_MODEL || 'qwen2.5:7b';
 const key = process.env.PRIVATE_LLM_KEY || '';
 
 const server = http.createServer(async (req, res) => {

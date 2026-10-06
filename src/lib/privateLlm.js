@@ -1,16 +1,27 @@
 /**
- * Private operating model. The browser calls our proxy.
- * The proxy calls only PRIVATE_LLM_URL on your server.
+ * Self-hosted operating model. Never calls Base44 InvokeLLM.
+ * Local launch talks to /api/ask (Vite proxy -> server/llm-proxy.mjs).
+ * Netlify talks to /.netlify/functions/ask.
+ * Default model is Qwen 2.5 7B on your own Ollama server.
  */
 export async function askPrivateModel(prompt) {
-  const res = await fetch('/.netlify/functions/ask', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt }),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok && !data.text) throw new Error(data.error || 'Private model unavailable');
-  return { ok: !data.error, text: data.text || data.error || '' };
+  const endpoints = ['/api/ask', '/.netlify/functions/ask'];
+  let last = 'Private model unavailable.';
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.text && data.error !== 'not_configured') return { ok: true, text: data.text };
+      last = data.text || data.error || last;
+    } catch (e) {
+      last = e.message || last;
+    }
+  }
+  return { ok: false, text: last };
 }
 
 export function privateLlmConfigured() {
