@@ -38,9 +38,14 @@ const getAppParamValue = (paramName, { defaultValue = undefined, removeFromUrl =
 }
 
 const getAppParams = () => {
-	if (getAppParamValue("clear_access_token") === 'true') {
+	// Only honor an explicit URL clear. A stored flag was wiping member sessions
+	// on every reload, which sent them back to sign-in. Admin hosted login
+	// survived because it put a fresh token in the URL.
+	if (!isNode && new URLSearchParams(window.location.search).get('clear_access_token') === 'true') {
 		storage.removeItem('base44_access_token');
 		storage.removeItem('token');
+		storage.removeItem('base44_token');
+		storage.removeItem('base44_clear_access_token');
 	}
 	return {
 		// These are public application configuration values, not secrets.

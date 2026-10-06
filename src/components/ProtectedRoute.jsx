@@ -40,13 +40,6 @@ export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthe
 
   if (!isAuthenticated) {
     if (readToken() && !retried.current) return fallback;
-    if (readToken() && retried.current) {
-      try {
-        localStorage.removeItem('base44_access_token');
-        localStorage.removeItem('token');
-        localStorage.removeItem('base44_token');
-      } catch (_) {}
-    }
     return unauthenticatedElement;
   }
 

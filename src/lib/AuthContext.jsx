@@ -62,6 +62,17 @@ export const AuthProvider = ({ children }) => {
         setIsLoadingPublicSettings(false);
       } catch (appError) {
         console.error('App state check failed:', appError);
+        const stored =
+          typeof window !== 'undefined' &&
+          (window.localStorage.getItem('base44_access_token') ||
+            window.localStorage.getItem('token') ||
+            window.localStorage.getItem('base44_token'));
+        if (stored) {
+          try { base44.setToken(stored); } catch (_) {}
+          await checkUserAuth();
+          setIsLoadingPublicSettings(false);
+          return;
+        }
 
         if (appError.status === 403 && appError.data?.extra_data?.reason) {
           const reason = appError.data.extra_data.reason;
